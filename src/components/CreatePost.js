@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {firestore} from '..firebase/'
 
 
 
@@ -21,6 +22,18 @@ function CreatePost() {
         console.log("title",title);
         console.log("Subtitle",subTitle);
         console.log("content",content);
+
+
+        // submitting to the firebase . even if posts as a collection doesnt exist , it will create a collection called post and then add the data
+        firebase.collection('posts').add({
+            title,
+            subTitle,
+            content,
+            createdAt : new Date()
+        });
+                  
+        
+
         
         }
         
