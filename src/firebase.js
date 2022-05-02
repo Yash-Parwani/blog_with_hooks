@@ -1,3 +1,4 @@
+// importing dependencies to use firebase
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 const firebaseConfig = {
@@ -12,3 +13,6 @@ const firebaseConfig = {
   // initialize firebase
 
  firebase.initializeApp(firebaseConfig);
+
+// exporting firestore so that we can use it as needed
+ export const firestore = firebase.firestore()

@@ -1,13 +1,14 @@
 import {useState} from 'react'
-import {firestore} from '..firebase/'
+import {firestore} from '../firebase'
 
-import {useFormInput} from '../hooks';
+import {useFormInput} from '../components/hooks';
 
 
 
 function CreatePost() {
     // using hooks so that we can manipulate what user is typing easily
     // const [title,setTitle] = useFormInput(""); this cant be used since useFormInput returns an object instead of an array that useState or any basic hook does
+    
     const title = useFormInput("");
     const content= useFormInput("");
     const subTitle = useFormInput("");
@@ -22,13 +23,14 @@ function CreatePost() {
         
         
         // checking if on submitiing we get everything as we wanted
+        console.log("recieved the following data");
         console.log("title",title);
         console.log("Subtitle",subTitle);
         console.log("content",content);
 
 
         // submitting to the firebase . even if posts as a collection doesnt exist , it will create a collection called post and then add the data
-        firebase.collection('posts').add({
+        firestore.collection('posts').add({
             title: title.value,
             subtitle: subTitle.value,
             content : content.value,
@@ -41,7 +43,7 @@ function CreatePost() {
         }
         
     return (
-      <div className="CreatePost">
+      <div className="create-post">
            <h1>Create Post</h1>
            <form onSubmit={handleSubmit}>
                <div className="form-field">
